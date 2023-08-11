@@ -1,0 +1,16 @@
+{
+    "name": "case03",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keyword": [],
+    "author": "Jack",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "moment": "^2.29.4",
+        "uniq": "^1.0.1"
+    }
+}
