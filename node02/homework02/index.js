@@ -4,11 +4,6 @@ const path = require("path");
 const moment = require("moment/moment");
 const requestIp = require("request-ip");
 
-// access.log 是否存在，沒有就創一個
-if (!fs.existsSync("./access.log")) {
-    fs.createWriteStream("./access.log");
-}
-
 // mime 類型
 const mimes = {
     html: "text/html",
@@ -67,10 +62,12 @@ const server = http.createServer((req, res) => {
         }
         // 將訊息紀錄在 access.log
         accessMsg = `${reqStatusMsg} ${time} ${method} ${pathname} ${ip}\r\n`;
-        fs.appendFile("./access.log", accessMsg, (err) => {
+        fs.appendFile("./access.log", accessMsg, err => {
             if (err) {
                 console.log("寫入 access.log 失敗");
+                return false;
             }
+            console.log("寫入 access.log 成功");
         });
     });
 });
