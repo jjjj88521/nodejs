@@ -4,3 +4,5 @@
 讀取成功 2023-08-16 20:33:56 GET /node_modules/bootstrap/dist/js/bootstrap.min.js ::1
 讀取成功 2023-08-16 20:33:56 GET /node_modules/jquery/dist/jquery.min.js ::1
 讀取成功 2023-08-16 20:33:56 GET /page.js ::1
+讀取失敗 2023-08-16 20:34:37 GET /tgferqwrrfbe ::1
+讀取失敗 2023-08-16 20:36:06 GET /tgferqwrrfbe?a=123 ::1
