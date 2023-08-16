@@ -25,14 +25,16 @@ const server = http.createServer((req, res) => {
     const { method } = req;
     let reqStatusMsg = "";
     let accessMsg = "";
+    let url = req.url;
 
     let { pathname } = new URL(req.url, "http://localhost");
+    // console.log(pathname);
 
     const root = __dirname;
     if (pathname === "/") {
         pathname = "/page.html";
     }
-    const filename = path.resolve(root + pathname);
+    const filename = path.resolve(root + pathname); // path.resolve 解析檔案，如果不執行，裡面內容就只是普通字串
     fs.readFile(filename, (err, data) => {
         // 錯誤處理
         if (err) {
@@ -61,7 +63,7 @@ const server = http.createServer((req, res) => {
             res.end(data);
         }
         // 將訊息紀錄在 access.log
-        accessMsg = `${reqStatusMsg} ${time} ${method} ${pathname} ${ip}\r\n`;
+        accessMsg = `${reqStatusMsg} ${time} ${method} ${url} ${ip}\r\n`;
         fs.appendFile("./access.log", accessMsg, err => {
             if (err) {
                 console.log("寫入 access.log 失敗");

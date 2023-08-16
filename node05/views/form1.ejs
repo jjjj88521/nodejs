@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/bootstrap.min.css" />
+        <title>上傳檔案表單</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="py-5">
+                <form
+                    action="/upload1"
+                    method="post"
+                    enctype="multipart/form-data"
+                >
+                    <div class="py-2">
+                        <div class="input-group">
+                            <span class="input-group-text">名稱</span>
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                            />
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <div class="input-group">
+                            <input
+                                type="file"
+                                name="myFile"
+                                class="form-control"
+                            />
+                        </div>
+                    </div>
+                    <div class="py-2 d-flex">
+                        <button class="btn btn-primary ms-auto">送出</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

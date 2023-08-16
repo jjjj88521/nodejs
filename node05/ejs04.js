@@ -4,10 +4,14 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
+let user;
+
 // 設定樣板引擎
 app.set("view engine", "ejs");
 // 設定 express 查找樣板檔案的路徑
 app.set("views", path.resolve(__dirname, "./views"));
+
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 app.get("/", (req, res) => {
     res.send("首頁");
@@ -26,12 +30,20 @@ app.get("/test2", (req, res) => {
 });
 
 app.get("/test3", (req, res) => {
-    let user;
+    res.render("test3", { user });
+});
+
+app.get("/logout", (req, res) => {
+    user = undefined;
+    res.redirect("/test3");
+});
+
+app.get("/login", (req, res) => {
     user = {
         name: "Jack",
         img: "https://randomuser.me/api/portraits/men/68.jpg",
     };
-    res.render("test3", { user });
+    res.redirect("/test3");
 });
 
 app.listen(3000, () => {
