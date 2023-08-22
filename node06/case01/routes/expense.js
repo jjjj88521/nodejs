@@ -53,6 +53,8 @@ router.post("/", function (req, res, next) {
     );
 });
 
+// 使用 multer 的 upload.none() 方法確保正確解析表單數據，不會涉及到檔案的上傳
+// 假如確定表單不會上傳任何檔案，加上這個可以確保表單傳送的安全與正確
 router.put("/", upload.none(), async function (req, res, next) {
     // res.json({ msg: "修改指定日期的消費" });
     let result = await updateData(req.body)
@@ -62,7 +64,7 @@ router.put("/", upload.none(), async function (req, res, next) {
         .catch(err => {
             return 0;
         });
-    res.json({ result: result });
+    res.json({ result });
 });
 
 router.delete("/", upload.none(), async function (req, res, next) {
@@ -75,7 +77,7 @@ router.delete("/", upload.none(), async function (req, res, next) {
         .catch(err => {
             return 0;
         });
-    res.json({ result: result });
+    res.json({ result });
 });
 
 // 取得分類
