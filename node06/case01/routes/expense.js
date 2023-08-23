@@ -16,15 +16,15 @@ router.get("/d/:date", async (req, res, next) => {
     // res.send("讀取指定日期的所有消費");
     let date = req.params.date;
     let sort = await getSort()
-        .then(data => {
+        .then((data) => {
             return data.sort;
         })
-        .catch(err => {});
+        .catch((err) => {});
     let dateData = await getDateData(date)
-        .then(data => {
+        .then((data) => {
             return data.results;
         })
-        .catch(err => {});
+        .catch((err) => {});
     // console.log(dateData);
     if (dateData && sort) {
         res.render("index", { date, sort, dateData });
@@ -41,7 +41,7 @@ router.post("/", function (req, res, next) {
     let date = req.body.date;
     // res.send(`${title} ${money} ${sort} ${date}`);
     connection.execute(
-        `INSERT INTO expense (id, title, sort, money, date) VALUES (NULL, ?, ?, ?, ?);`,
+        `INSERT INTO expense (title, sort, money, date) VALUES (?, ?, ?, ?);`,
         [title, sort, money, date],
         function (err, results) {
             if (err) {
@@ -58,10 +58,10 @@ router.post("/", function (req, res, next) {
 router.put("/", upload.none(), async function (req, res, next) {
     // res.json({ msg: "修改指定日期的消費" });
     let result = await updateData(req.body)
-        .then(data => {
+        .then((data) => {
             return 1;
         })
-        .catch(err => {
+        .catch((err) => {
             return 0;
         });
     res.json({ result });
@@ -71,10 +71,10 @@ router.delete("/", upload.none(), async function (req, res, next) {
     // res.json({ msg: "刪除指定日期的消費" });
     // console.log(req.body);
     let result = await deleteData(req.body)
-        .then(data => {
+        .then((data) => {
             return 1;
         })
-        .catch(err => {
+        .catch((err) => {
             return 0;
         });
     res.json({ result });
@@ -89,7 +89,7 @@ function getSort() {
                 reject({ err });
                 return false;
             }
-            let sort = results.map(item => {
+            let sort = results.map((item) => {
                 return { id: item.id, name: item.name };
             });
             resolve({ sort });
