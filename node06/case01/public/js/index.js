@@ -1,6 +1,6 @@
 // 切換日期網址
 $(".myDate").on("change", (e) => {
-    let date = e.currentTarget.value;
+    const date = e.currentTarget.value;
     location.href = `/expe/d/${date}`;
 });
 
@@ -41,10 +41,10 @@ $(".btn-send").on("click", () => {
 });
 
 $(".list").on("click", (e) => {
-    let id = $(e.currentTarget).data("id");
-    let title = $(e.currentTarget).data("title");
-    let money = $(e.currentTarget).data("money");
-    let sort = $(e.currentTarget).data("sort");
+    const id = $(e.currentTarget).data("id");
+    const title = $(e.currentTarget).data("title");
+    const money = $(e.currentTarget).data("money");
+    const sort = $(e.currentTarget).data("sort");
 
     $("[name=id]").val(id);
     $("[name=title]").val(title);
@@ -60,7 +60,7 @@ $(".list").on("click", (e) => {
 });
 
 $(".btn-update").on("click", (e) => {
-    let url = "/expe";
+    const url = "/expe";
     const formData = new FormData($("form")[0]);
 
     axios
